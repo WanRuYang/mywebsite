@@ -1,0 +1,274 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Hi! I'm Wan-Ru</title>
+    
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'main/jquery.ba-hashchange.js' %}"></script>
+    <script type="text/javascript" src="{% static 'main/d3.js' %}"></script>
+    <script type="text/javascript" src="{% static 'main/transit.js' %}"></script>
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+    
+    <style>
+
+  body
+  {
+    font-family: 'Raleway', sans-serif;
+    font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 8pt;
+  }
+
+
+  #transitMap 
+  {
+    /*position:relative;*/
+    margin:auto;
+    top: 20px;
+    /*right: 0;*/
+    bottom: 0;
+    left: 0;
+    width: 800px;
+    height: 190px;
+    padding-left: 60px;
+    padding-top: 50px;
+    background-color: #fff;
+  }
+
+  #title_word
+  {
+    margin:auto;
+    width: 840px;
+    text-align: left;
+    /*font-family: Raleway;*/
+    font-size: 20pt;
+    padding-top: 8px;
+    padding-left: 8px;
+    color: #5db7d5;
+  }
+  .tab
+    {
+    margin: auto;
+    width: 840px;
+    height:600px;
+    font-family: 'Raleway', sans-serif;
+    line-height: 1.6;
+    font-weight: 400;
+    text-align: left;
+    padding-top: 30px;
+    padding-right: 5px;
+    padding-left: 15px;
+    text-indent: 0px;
+    font-size: 11pt;
+    color: #1a1a1a; 
+    /*font-family: "Lucida" Grande, sans-serif;*/
+    }
+  .tab .tabRow
+  {
+    height:280px;
+  }
+  .tab .tabRowShort
+  {
+    height:220px;
+  }
+
+    .left
+    {
+      width: 220px;
+      float: left;
+    }
+
+    .right
+    {
+      margin-left: 230px; 
+      /* Change this to whatever the width of your left column is*/
+    }
+
+    .right p {
+    font-size: 15px;
+    font-weight: 200;
+    text-align: left;
+    line-height: 21px;
+    padding-top: 10px;
+    padding-left: 15%;
+    padding-right: 0%;
+    }
+
+    #left-detail
+    {
+      width: 220px;
+      float: left;
+      padding-left: 18px;
+      padding-top: 10px;
+    }
+
+  .job-skill {
+    float: left;
+    margin-left: 15px;
+    margin-right: 10px;
+    margin-bottom: 30px;
+    background-color: #5db7d5;
+    color: white;
+    font-size: 12px;
+    line-height: 18px;
+    padding: 2px 10px 2px 10px;
+    border-radius: 3px;
+  }
+
+  .job-skill2 {
+    float: left;
+    margin-left: 15px;
+    margin-right: 10px;
+    margin-bottom: 100px;
+    background-color: #5db7d5;
+    color: white;
+    font-size: 12px;
+    line-height: 18px;
+    padding: 2px 10px 2px 10px;
+    border-radius: 3px;
+  }
+
+  .child_div_1{
+    float:left;
+    width:200px;
+  }
+
+  .child_div_2{
+    float:left;
+    width:350px;
+    margin-left: 0px;
+  }
+    
+    </style>
+  </head>
+
+<body>
+  <div id="title_word">
+    <p>Wan-Ru Yang</p>
+  </div>
+
+  <div id = 'transitMap'> </div> 
+  <div id="about-tab" class='tab'>
+      <IMG SRC="{% static 'main/proimg.jpg' %}" style="float:right;clear:right;padding: 10px 10px 10px 10px;";></IMG>
+      <p>I am Wan-Ru, a self driven data analyst who has spent several years building my skills and knowledge around data science. 
+      </p>
+      <p>I am completing my PhD in Ecology this summer. The transit map above summarizing my experiences in academia and data analysis. Please click the nodes for more information. The protfolio section is continuously updating.</p>
+      <p>You can contact me via <a href="https://www.linkedin.com/in/wan-ru-yang-b15b0452" target="_blank">LinkedIn. </a></font> </p>
+  </div>
+
+
+  <div id="rs-tab" class='tab'>
+      <p>Remote sensing is the technology of obtaining information about an object from a distance. I used remote sensing in detecting land use change, evaluating vegetation growing status, estimating crop water usage, creating maps for my reserach area, and etc.. 
+      </p>
+      <p>I have experience in analyzing remote sensing data of several sensors,<br> including several<a href='http://earthexplorer.usgs.gov/' target="_blank"> USGS </a> and commercial satellite data whose properties are relevant for my research. 
+      </p> 
+
+      <p>Besides commerical remote sensing processing softwares like <a href= 'http://www.exelisvis.com/IntelliEarthSolutions/GeospatialProducts.aspx' target="_blank">ENVI</a> or <a href='http://www.hexagongeospatial.com/products/producer-suite/erdas-imagine' target="_blank">Imagine </a>, I also use open source tools like <a href='https://grass.osgeo.org/' target="_blank">GRASS</a>, <a href='http://orfeo-toolbox.org/' target="_blank">ORFEO</a>, and <a href='https://trac.osgeo.org/ossim/' target="_blank">OSSIM</a> for remote sensing analysis. A great advantage of the open source tools is cross-platform, and provides <font color="#e14b5b">python</font> bindings. It's handy for implementing new algorithms to extend the capacity for analyzing data.
+      </p>
+  </div>
+
+  <div id="GIS-tab" class='tab'>
+      <p> A geographic information system (GIS) is usually referred to as a software for displaying and analzing spatial data--data that comes with position reference. </p>
+      <p> In practicde, all programming languages can be used to process spatial data. I use R, python, javascript, and PostgreSQL in spatial data extraction, format conversion, and performing analysis work. 
+      </p>
+  </div>
+
+  <div id="research-tab" class='tab'>
+      <p>I have been interested in researching how anthropogenic land use changing over time, and how these changes influence natural environment. My PhD research is about integrating data to monitor the spatial and temporal change of farmming land uses, analyzing factors that contributes to cropping decisions and investigating how those changes in "cropping pattern" related to pesticide use intensity.</p>
+  </div>
+
+  <div id="analysis-tab" class='tab'>
+      <p><font color="#e14b5b">Formal Courses</font>: Quantative Geography, Biostatistics, Geostatistics, Physical Hydrology(all about probability), Hydrologic Modeling, Systems Hydrology(Hydrology reserach design), Applied Multivariate Modeling</p>
+      <p><font color="#e14b5b">Online Courses</font> <br> Coursera: Maching Learning<br>MIT OpenCourseWare: Linear Algebra</p>
+       <p><font color="#e14b5b">Applied in research projects:</font> <br> 
+        exploratory data analysis; time series analysis, multinomial logistic regression, spatial panel data model, cluster analysis, non metric multidimensional scaling, and ......
+       </p>
+  </div>
+
+  <div id="skill-tab" class='tab'>
+    <p><font color="#e14b5b">Main (knowledge and daily experience)</font>: R, Python, PostgreSQL </p>
+    <p><font color="#e14b5b">Experienced: </font> Javascript, D3.js, bash, c#, VBA</p>
+  </div>
+
+  <div id="portfolio-tab" class='tab'>
+    <div class="tabRowShort">
+      <div class="left">
+         <img src="{% static 'main/boxplot.png' %}" alt="boxplot" width="300" height="200";>
+      </div>
+
+      <div class="right" >
+        <p padding-top:"15px"> <u>Corn production vs. farm acres treated with insecticide</u>: The plot represents the total farmland area and corn growing acerage at county level during 4 agricultural survey periods.A data analysis project that comfimed the existence of evoloving pest resistance to GMO corn. <a href="http://abound.lawr.ucdavis.edu/wryang/midwestbug/">  <font color="#55AE3A">
+        <br> <u>Read More (mapping with D3) </font></u></a> 。 <a href="http://www.ccsenet.org/journal/index.php/jas/article/view/49702" target="_blank"> <font color="#55AE3A"><u>Journal Paper(pdf)</a></u></font></p>
+      </div>
+    </div>
+
+    <div class="tabRow">      
+      <div class="left">
+         <img src="{% static 'main/nmds_sanjoquin.png' %}" alt="sj" width="300" height="200" padding-top="20px";>
+      </div>
+
+      <div class="right">
+        <p  padding-top:"0px"><u>Cropping pattern in California</u>: I applied cluster analysis and Non-metric multidimensional scaling (NMDS) on inter-annual crop variation data derived from California's pesticide use report. The purpose was to locate farmers who are more inclined to grow new crops. Left plot shows the distribution of cluster result, which has been used in developing two anlaysis that will be submitted for publication soon: </br> 1) incorporated into an economic model to predict the effect of increasing price and adoption of sugarbeet as an energy crop </br> 2) fitted a logistic model to examining factors that contributing to farmers' crop choice deceision.</br>The result indicates that spatial aggregation of data points in the same clustered group. Please check out the reuslt on <a href="wryang/static/main/ftb_sugarbeetarea.html" > <font color="#55AE3A"> <u>google map </u></a></font>.</p>
+      </div>
+    </div>
+
+    <div class="tabRowShort">
+      <div class="left" id="left-detail">
+         <img src="{% static 'main/landsat_seg.png' %}" alt="sj" width="260" height="160" padding-top:"20px";>
+      </div>
+
+      <div class="right">
+        <p><u>Landuse mapping from remote sensing data</u>: The images on the left shows the segmentation result of <a href="http://landsat.usgs.gov/" target="_blank"> <font color="#55AE3A">a composed Lansat image of my reseach area</font></a>. The spectral reflectance values extreacted from <a href="http://aviris.jpl.nasa.gov/" target="_blank"> <font color="#55AE3A">AVIRIS</font></a> images is used for classification with prefined labels. The training labels were created using data derived from California's pesticide report, which contains crop existence infomation at 1-square-mile squares across the entire California. This is an ongoing project planned to be done by April, 2016.</p>
+      </div>
+    </div>
+
+    <div class="tabRow">
+      <div class="left">
+         <img src="{% static 'main/lognormal_fit.png' %}" alt="sj" width="290" height="180" padding-top='5px';>
+      </div>
+
+      <div class="right">
+        <p> <u>Lognormal distribution parameter estimation using method of memoent:</u> This was a class project done in 2010, and is my very first project that completely depended on R for analysis.<a href='/wryang/static/main/hyd142project.pdf'><font color="#55AE3A"> <u>read more</u></font></a></p>
+      </div>
+    </div>
+
+
+  </div>
+
+  <script type="text/javascript">
+    var transitMap = '#transitMap';
+
+    //call funcion from transit.js to draw profile map
+    line_chart();
+
+    jQuery(function($){
+    var windowWidth = $(window).width();
+
+    $(window).resize(function() {
+        if(windowWidth != $(window).width()){
+        location.reload();
+        return;
+        }
+        });
+    });
+
+    // change hash 
+    $(window).hashchange(function() {
+        var hash = location.hash.slice(1);
+        console.log('hash changed: ', hash);
+
+        if (hash === '') {
+            location.hash = '#about';
+        }
+
+        $('.tab').hide();
+        $('#' + hash + '-tab').show();
+    });
+
+    $(window).hashchange();
+
+  </script>
+  </body>
+</html>

@@ -1,0 +1,423 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+
+body {  
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+  margin:0 auto;
+  position: relative;
+  font-family: "brandon-grotesque-1",sans-serif;
+  font-size: 16px;
+  font-weight: 100;
+  color: #A9A9A9;
+  overflow-x: hidden;
+  text-align: center;
+  padding-top: 5%;
+  padding-bottom: 10px;
+}
+
+.content.title {
+  font-size: 20px;
+  color: #969696;
+}
+
+.content h{
+  color:#0ba159;
+  font-size: 24px;
+  font-weight: 300;
+}
+
+.center-row {
+  position: relative;
+  left: 50%;
+  float: left;
+}
+
+.container-row {
+  position: relative;
+  left: -50%;
+}
+
+.container-item {
+  float: left;
+}
+
+.clearfix {
+  clear: both;
+}
+
+.counties {
+  fill: none;
+}
+
+.states {
+  fill: none;
+  stroke: #fff;
+  stroke-linejoin: round;
+}
+
+.q0-6 { fill:#f7fbff; }
+.q1-6 { fill:#deebf7; }
+.q2-6 { fill:#9ecae1; }
+.q3-6 { fill:#6baed6; }
+.q4-6 { fill:#2171b5; }
+.q5-6 { fill:#08306b; }
+
+.u0-6 { fill:#feedde; }
+.u1-6 { fill:#fdd0a2; }
+.u2-6 { fill:#fdae6b; }
+.u3-6 { fill:#fd8d3c; }
+.u4-6 { fill:#e6550d; }
+.u5-6 { fill:#a63603; }
+
+.a0-6 { fill:#f7fcf5; }
+.a1-6 { fill:#c7e9c0; }
+.a2-6 { fill:#a1d99b; }
+.a3-6 { fill:#74c476; }
+.a4-6 { fill:#238b45; }
+.a5-6 { fill:#00441b; }
+
+.n0-6 { fill:#f2f0f7; }
+.n1-6 { fill:#dadaeb; }
+.n2-6 { fill:#bcbddc; }
+.n3-6 { fill:#9e9ac8; }
+.n4-6 { fill:#756bb1; }
+.n5-6 { fill:#54278f; }
+
+.t0-6 { fill:#3288bd; }
+.t1-6 { fill:#99d594; }
+.t2-6 { fill:#ffffbf; }
+.t3-6 { fill:#fee08b; }
+.t4-6 { fill:#fc8d59; }
+.t5-6 { fill:#d53e4f; }
+
+
+.legend {
+  font-size: 12px;
+}
+
+
+.myButton {
+  -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+  -webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+  box-shadow:inset 0px 1px 0px 0px #ffffff;
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f9f9f9), color-stop(1, #e9e9e9));
+  background:-moz-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+  background:-webkit-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+  background:-o-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+  background:-ms-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+  background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#e9e9e9',GradientType=0);
+  background-color:#f9f9f9;
+  -moz-border-radius:4px;
+  -webkit-border-radius:4px;
+  border-radius:4px;
+  border:1px solid #dcdcdc;
+  display:inline-block;
+  cursor:pointer;
+  color:#666666;
+  font-family:Trebuchet MS;
+  font-size:15px;
+  padding:4px 21px;
+  text-decoration:none;
+}
+.myButton:hover {
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e9e9e9), color-stop(1, #f9f9f9));
+  background:-moz-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+  background:-webkit-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+  background:-o-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+  background:-ms-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+  background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9e9e9', endColorstr='#f9f9f9',GradientType=0);
+  background-color:#e9e9e9;
+}
+.myButton:active {
+  position:relative;
+  top:1px;
+}
+
+
+
+  </style>
+</head>
+
+<body>
+  <!-- original method -->
+  <!-- <svg><g></g></svg> -->
+
+  <!-- new method for four maps -->
+  <div class="content"> 
+    <h>Does Crop Diversity Reduction lead to Increating Insecticide Use? </h>
+    <p>Hugh farm, mono crop is the crop diversity</p>
+
+    <div class="myButton" onclick="load_insecticide()">Insecticide</div>
+    <div class="myButton" onclick="load_diversity()">Crop Diversity</div>
+    <div class="myButton" onclick="load_corn()">Prop. Corn</div>
+    <div class="myButton" onclick="load_price()">Degree Day</div>
+    <div class="myButton" onclick="load_hear()">Market Price</div>
+  </div> 
+
+  <div id="spinnerContainer"></div>
+
+  <div class="center-row">
+
+    <div class="container-row">
+      <div class="container-item"><svg id="map1"></svg><div class="content title">1997</div></div>
+      <div class="container-item"><svg id="map2"></svg><div class="content title">2002</div></div>
+      <div class="clearfix"></div>
+    </div>
+
+    <div class="container-row">
+      <div class="container-item"><svg id="map3"></svg><div class="content title">2007</div></div>
+      <div class="container-item"><svg id="map4"></svg><div class="content title">2012</div></div>
+      <div class="clearfix"></div>
+    </div>
+      <div class="container-row"><svg id="legend" height="70" width="100%">legend</svg></div>
+  </div>
+   
+  <div class="content" style="clear:both"> THis is the analysis part</div>
+
+  <meta charset="UTF-8">
+  <script type="text/javascript" src="http://d3js.org/d3.v3.js" charset="utf-8"></script>
+  <script type="text/javascript" src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  <script type="text/javascript" src={% static "midwestbug/topojson.v1.min.js" charset="utf-8" %}></script>
+  <script type="text/javascript" src="http://d3js.org/queue.v1.min.js" charset="utf-8"></script>
+   <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+   <script type="text/javascript" src={% static "midwestbug/spinner.js" charset="utf-8" %}></script>
+  <script>
+
+  var spinner;
+
+  function spinnerInit(){
+    var opts = {
+        lines: 13 // The number of lines to draw
+      , length: 28 // The length of each line
+      , width: 14 // The line thickness
+      , radius: 42 // The radius of the inner circle
+      , scale: 1 // Scales overall size of the spinner
+      , corners: 1 // Corner roundness (0..1)
+      , color: ['#8dd3c7','#ffffb3','#bebada','#fb8072','#80b1d3','#fdb462']
+      // #rgb or #rrggbb or array of colors
+      , opacity: 0.25 // Opacity of the lines
+      , rotate: 0 // The rotation offset
+      , direction: 1 // 1: clockwise, -1: counterclockwise
+      , speed: 0.9 // Rounds per second
+      , trail: 60 // Afterglow percentage
+      , fps: 20 // Frames per second when using setTimeout() as a fallback for CSS
+      , zIndex: 2e9 // The z-index (defaults to 2000000000)
+      , className: 'spinner' // The CSS class to assign to the spinner
+      , top: '50%' // Top position relative to parent
+      , left: '50%' // Left position relative to parent
+      , shadow: false // Whether to render a shadow
+      , hwaccel: false // Whether to use hardware acceleration
+      //, position: 'relative' // Element positioning
+      };
+      // $('#spinnerContainer').after(new Spinner(opts).spin().el);
+    var target = document.getElementById("spinnerContainer")
+    spinner = new Spinner(opts).spin(target);
+  };
+
+  function spinnerStop() {
+    if (spinner !== undefined) {
+      spinner.stop();
+    }
+  }
+
+  var width = 280,
+      height = 220;
+
+  var rateById = d3.map();
+
+  var data_domain;
+
+  var quantize;
+
+  var fill_class;
+
+  var projection = d3.geo.albersUsa()
+      .scale(380)
+      .translate([width / 2, height / 2]);
+
+  var path = d3.geo.path()
+      .projection(projection);
+
+  var load_data=function(u1, u2, u3, u4, color_type, data_domain){
+    quantize = d3.scale.threshold()
+      .domain(data_domain)
+      .range(d3.range(6).map(function(i) { return color_type + i + "-6"; }));
+
+    queue() 
+      .defer(d3.json, "http://abound.lawr.ucdavis.edu/wryang/static/midwestbug/us.json")
+      .defer(d3.tsv, u1)
+      .defer(d3.tsv, u2)
+      .defer(d3.tsv, u3)
+      .defer(d3.tsv, u4)
+      .await(ready);  
+
+  function ready(error, us, data97, data02, data07, data12) {
+      if (error) throw error;
+
+      data = [data97, data02, data07, data12]
+
+      data.forEach(function(d, i) { 
+        d.forEach(function(dd) {
+          rateById.set(dd.id, +dd.rate);
+        });
+
+        var svg = d3.select('#map' + (i+1))
+          .attr("width", width)
+          .attr("height", height);
+
+        var counties = svg.select(".counties");
+        if (counties.empty() === true) {
+          counties = svg.append("g")
+            .attr("class", "counties");
+        }
+        var county_paths = counties.selectAll("path")
+            .data(topojson.feature(us, us.objects.counties).features);
+
+        county_paths.enter()
+          .append("path");
+
+        county_paths
+            .attr("class", function(d) { 
+              // console.log('d:', d);
+              var qcolor = rateById.get(d.id);
+              // console.log('q:', q);
+              return quantize(qcolor); 
+              })
+            .attr("d", path);
+
+        if (svg.select(".states").empty() === true) {
+          svg.append("path")
+            .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
+            .attr("class", "states")
+            .attr("d", path);
+        }
+    })
+
+      fill_class = data_domain.map(quantize);
+      var legend = d3.select("#legend").selectAll("g.legend")
+        .data(data_domain);
+
+      var ls_w = 92, ls_h = 20;
+
+      var legend_enter = legend.enter()
+        .append("g")
+        .attr("class", "legend");
+
+      legend_enter
+        .append("rect")  //height - (i*ls_h) - 2*ls_h;
+        .attr("x", function(d, i){ return ls_w*i;})
+        .attr("y", 20)
+        .attr("height", ls_h)
+        .attr("width", ls_w)
+        .style("opacity", 0.8);
+
+      legend_enter
+        .append("text") 
+        .attr("x", function(d, i){ return ls_w*i;})
+        .attr("y", 50)
+        // .text(function(d, i){ return data_domain[i]; })
+        .attr("font-family", "sans-serif")
+        .attr("font-size", "15px")
+        .attr("font-weight", 100)
+        .attr("height", "18px")
+        .attr("dy", ".38em") 
+        .attr("text-anchor", "right");
+
+      legend
+        // .style("fill", function(d, i) { return color_out[i]; })
+        .attr("class", function(d, i) { return "legend " + fill_class[i]; })
+        .select("text").text(function(d, i){ return data_domain[i]; });
+
+      d3.select(self.frameElement).style("height", height + "px"); 
+
+      spinnerStop();
+    };
+  }
+
+  window.onload = 
+  load_data(
+    "http://abound.lawr.ucdavis.edu/wryang/midwestbug/insecticide1997",
+    "http://abound.lawr.ucdavis.edu/wryang/midwestbug/insecticide2002",
+    "http://abound.lawr.ucdavis.edu/wryang/midwestbug/insecticide2007",
+    "http://abound.lawr.ucdavis.edu/wryang/midwestbug/insecticide2012",
+    "q",
+    data_domain = [0, 0.2, 0.4, 0.5, 0.7, 2]
+  );
+
+  function load_insecticide() {
+    load_data(
+    "http://abound.lawr.ucdavis.edu/wryang/midwestbug/insecticide1997",
+    "http://abound.lawr.ucdavis.edu/wryang/midwestbug/insecticide2002",
+    "http://abound.lawr.ucdavis.edu/wryang/midwestbug/insecticide2007",
+    "http://abound.lawr.ucdavis.edu/wryang/midwestbug/insecticide2012",
+    "q",
+    data_domain = [0, 0.2, 0.4, 0.5, 0.7, 2]
+    );
+  }
+
+  function load_price() {
+    load_data(
+    "http://abound.lawr.ucdavis.edu/wryang/midwestbug/price1997",
+    "http://abound.lawr.ucdavis.edu/wryang/midwestbug/price2002",
+    "http://abound.lawr.ucdavis.edu/wryang/midwestbug/price2007",
+    "http://abound.lawr.ucdavis.edu/wryang/midwestbug/price2012",
+    "u",
+    data_domain = [0, 250, 500, 1000, 5000]
+    );
+  }
+
+
+  function load_corn() {
+    load_data(
+    "http://abound.lawr.ucdavis.edu/wryang/midwestbug/corn1997",
+    "http://abound.lawr.ucdavis.edu/wryang/midwestbug/corn2002",
+    "http://abound.lawr.ucdavis.edu/wryang/midwestbug/corn2007",
+    "http://abound.lawr.ucdavis.edu/wryang/midwestbug/corn2012",
+    "a",
+    data_domain = [0, 0.2, 0.4, 0.6, 0.8, 1]
+    );
+  }
+
+  function load_diversity() {
+    load_data(
+    "http://abound.lawr.ucdavis.edu/wryang/midwestbug/diversity1997",
+    "http://abound.lawr.ucdavis.edu/wryang/midwestbug/diversity2002",
+    "http://abound.lawr.ucdavis.edu/wryang/midwestbug/diversity2007",
+    "http://abound.lawr.ucdavis.edu/wryang/midwestbug/diversity2012",
+    "n",
+    data_domain = [0, 0.2, 0.4, 0.6, 0.8, 1]
+    );
+  }
+  
+  function load_heat() {
+    load_data(
+    "http://abound.lawr.ucdavis.edu/wryang/midwestbug/heat1997",
+    "http://abound.lawr.ucdavis.edu/wryang/midwestbug/heat2002",
+    "http://abound.lawr.ucdavis.edu/wryang/midwestbug/heat2007",
+    "http://abound.lawr.ucdavis.edu/wryang/midwestbug/heat2012",
+    "t",
+    data_domain = [0, 30, 60, 90, 180, 270, 365]
+    );
+  }
+
+
+
+  $(document).ready(function () {
+    $('.myButton').click(function () {
+          spinnerInit();
+           });
+  });
+
+  </script>
+</body>
+</html>

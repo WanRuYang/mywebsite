@@ -1,0 +1,3 @@
+*.pyc
+sftp-config.json
+src/node_modules
