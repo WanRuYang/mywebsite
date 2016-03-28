@@ -22,5 +22,8 @@
     "jquery": "2.2.2",
     "spinner": "0.3.4",
     "topojson": "1.6.24"
+  },
+  "devDependencies": {
+    "webpack": "^1.12.14"
   }
 }
