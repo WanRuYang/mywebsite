@@ -1,0 +1,26 @@
+{
+  "name": "mywebsite",
+  "version": "1.0.0",
+  "description": "\"my personal website\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zuyapenguin/mywebsite.git"
+  },
+  "author": "ZuyaYang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zuyapenguin/mywebsite/issues"
+  },
+  "homepage": "https://github.com/zuyapenguin/mywebsite#readme",
+  "dependencies": {
+    "d3": "3.5.16",
+    "d3-queue": "2.0.3",
+    "jquery": "2.2.2",
+    "spinner": "0.3.4",
+    "topojson": "1.6.24"
+  }
+}
