@@ -6,10 +6,8 @@
     <title>Hi! I'm Wan-Ru</title>
     
     <meta charset="utf-8">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script type="text/javascript" src="{% static 'main/jquery.ba-hashchange.js' %}"></script>
-    <script type="text/javascript" src="{% static 'main/d3.js' %}"></script>
-    <script type="text/javascript" src="{% static 'main/transit.js' %}"></script>
+    
+    <!-- <script type="text/javascript" src="{% static 'main/jquery.ba-hashchange.js' %}"></script> -->
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
     
     <style>
@@ -189,8 +187,8 @@
   </div>
 
   <div id="skill-tab" class='tab'>
-    <p><font color="#e14b5b">Main (knowledge and daily experience)</font>: R, Python, PostgreSQL </p>
-    <p><font color="#e14b5b">Experienced: </font> Javascript, D3.js, bash, c#, VBA</p>
+    <p><font color="#e14b5b">Main (knowledge and daily experience)</font>: R, Python, PostgreSQL, git, Open Source GIS</p>
+    <p><font color="#e14b5b">Experienced: </font> Javascript, D3.js, node.js, bash, c#, VBA</p>
   </div>
 
   <div id="portfolio-tab" class='tab'>
@@ -238,38 +236,7 @@
 
   </div>
 
-  <script type="text/javascript">
-    var transitMap = '#transitMap';
+  <script type="text/javascript" src="{% static 'main/bundle.js' %}"></script>
 
-    //call funcion from transit.js to draw profile map
-    line_chart();
-
-    jQuery(function($){
-    var windowWidth = $(window).width();
-
-    $(window).resize(function() {
-        if(windowWidth != $(window).width()){
-        location.reload();
-        return;
-        }
-        });
-    });
-
-    // change hash 
-    $(window).hashchange(function() {
-        var hash = location.hash.slice(1);
-        console.log('hash changed: ', hash);
-
-        if (hash === '') {
-            location.hash = '#about';
-        }
-
-        $('.tab').hide();
-        $('#' + hash + '-tab').show();
-    });
-
-    $(window).hashchange();
-
-  </script>
   </body>
 </html>

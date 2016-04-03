@@ -1,4 +1,4 @@
 *.pyc
 sftp-config.json
 node_modules
-build/
+static/main/bundle.js

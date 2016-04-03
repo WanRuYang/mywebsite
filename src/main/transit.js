@@ -1,4 +1,4 @@
-function line_chart(){
+export function line_chart(){
   //Width and height
   var circleData = 
   //about 20, 28; research 60, 89; portfolio 434, 91
@@ -238,7 +238,7 @@ function line_chart(){
   // add text label 
   var stopLabelGroup = svgContainer.append("g");
 
-      stopLabels = stopLabelGroup.selectAll("text")
+      let stopLabels = stopLabelGroup.selectAll("text")
                     .data(stoplabel)
                     .enter()
                     .append("text")
